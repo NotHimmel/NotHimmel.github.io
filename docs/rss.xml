@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 11 Jun 2025 08:45:57 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>PostgreSQL 服务端编码支持GB18030</title><link>https://nothimmel.github.io/post/PostgreSQL%20-fu-wu-duan-bian-ma-zhi-chi-GB18030.html</link><description># 编码介绍
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 11 Jun 2025 08:52:26 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>PostgreSQL 服务端编码支持GB18030</title><link>https://nothimmel.github.io/post/PostgreSQL%20-fu-wu-duan-bian-ma-zhi-chi-GB18030.html</link><description># 编码介绍
 目前熟知的编码方式如下：
 
 - 基础ASCII 单字节 7位128个
@@ -11,7 +11,7 @@
 - UTF-8 可变长编码（1-4字节 ASCII、希腊字母、汉字、其他平面符号）
 - GB18030 
 - GB18030-2000/2005
-- [GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3) 可变长编码（1ASCII，2GBK，4字其他文字扩展节） CJK 统一汉字87875个
+- [GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3) 可变长编码（1ASCII，2GBK，4其他文字扩展 字节） CJK 统一汉字87875个
 
 问题：GB18030完全兼容GBK吗？
 

@@ -10,7 +10,7 @@
 - UTF-8 可变长编码（1-4字节 ASCII、希腊字母、汉字、其他平面符号）
 - GB18030 
 - GB18030-2000/2005
-- [GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3) 可变长编码（1ASCII，2GBK，4字其他文字扩展节） CJK 统一汉字87875个
+- [GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3) 可变长编码（1ASCII，2GBK，4其他文字扩展 字节） CJK 统一汉字87875个
 
 问题：GB18030完全兼容GBK吗？
 
