@@ -1,28 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>🌌</title><link>https://blog.meekdai.com</link><description>天地与我共生，万物与我为一</description><copyright>🌌</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog.meekdai.com/avatar.svg</url><title>avatar</title><link>https://blog.meekdai.com</link></image><lastBuildDate>Wed, 11 Jun 2025 00:38:05 +0000</lastBuildDate><managingEditor>🌌</managingEditor><ttl>60</ttl><webMaster>🌌</webMaster><item><title>数据库使用手册-基本版</title><link>https://blog.meekdai.com/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>🌌</title><link>https://blog.meekdai.com</link><description>天地与我共生，万物与我为一</description><copyright>🌌</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog.meekdai.com/avatar.svg</url><title>avatar</title><link>https://blog.meekdai.com</link></image><lastBuildDate>Wed, 11 Jun 2025 01:19:20 +0000</lastBuildDate><managingEditor>🌌</managingEditor><ttl>60</ttl><webMaster>🌌</webMaster><item><title>数据库使用手册-基本版</title><link>https://blog.meekdai.com/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
 mkdir -p /opt/postgres
 ./configure --prefix=/opt/postgres &amp;&amp; make -j 8 &amp;&amp; make install
+```
+添加用户
+```
 useradd -m postgres; passwd postgres;
 mkdir /opt/postgres/data
 chown -R postgres /opt/postgres
+su postgres
+
+
 # vim ~/.bashrc
 PATH=$PATH:/opt/postgres/bin
 export PATH
 LD_LIBRARY_PATH=/opt/postgres/lib
 export LD_LIBRARY_PATH
 export PGDATA=/opt/postgres/data
+
 source ~/.bashrc
 postgres --version
 ```
+### 启动数据库
+```
+initdb -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+psql -p 5432 
+```
+### 修改配置
+```
+vi postgresql.conf
+listen_addresses = '*'
+#port = 5432
+#unix_socket_directories = '/tmp'
+#改完postgresql.conf后需要重启数据库
+pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
+vi pg_hba.conf
+#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
+host        all        all        0.0.0.0/0        md5
+# 若端口号有冲突使用netstat -anp | grep 5432
+# pg_ctl reload重新读取pg_hba.conf文件
+```
 
-### 创建数据库用户
+### 创建、迁移数据库用户
 ```sql
-postgres=# create user pg with password 'password';
+postgres=# create user your_name with password 'password';
 CREATE ROLE
--- alter pg name rename to new pgnew;
--- alter pg name with password 'newpassword'; 
+-- ALTER your_name name with password 'newpassword'; 
+-- ALTER TABLE your_table_name OWNER TO new_username;
 ```
 ## HighgoDB
 

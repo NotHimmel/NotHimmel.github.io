@@ -15,25 +15,52 @@
 ```
 mkdir -p /opt/postgres
 ./configure --prefix=/opt/postgres && make -j 8 && make install
+```
+添加用户
+```
 useradd -m postgres; passwd postgres;
 mkdir /opt/postgres/data
 chown -R postgres /opt/postgres
+su postgres
+
+
 # vim ~/.bashrc
 PATH=$PATH:/opt/postgres/bin
 export PATH
 LD_LIBRARY_PATH=/opt/postgres/lib
 export LD_LIBRARY_PATH
 export PGDATA=/opt/postgres/data
+
 source ~/.bashrc
 postgres --version
 ```
+### 启动数据库
+```
+initdb -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+psql -p 5432 
+```
+### 修改配置
+```
+vi postgresql.conf
+listen_addresses = '*'
+#port = 5432
+#unix_socket_directories = '/tmp'
+#改完postgresql.conf后需要重启数据库
+pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
+vi pg_hba.conf
+#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
+host        all        all        0.0.0.0/0        md5
+# 若端口号有冲突使用netstat -anp | grep 5432
+# pg_ctl reload重新读取pg_hba.conf文件
+```
 
-### 创建数据库用户
+### 创建、迁移数据库用户
 ```sql
-postgres=# create user pg with password 'password';
+postgres=# create user your_name with password 'password';
 CREATE ROLE
--- alter pg name rename to new pgnew;
--- alter pg name with password 'newpassword'; 
+-- ALTER your_name name with password 'newpassword'; 
+-- ALTER TABLE your_table_name OWNER TO new_username;
 ```
 ## HighgoDB
 
@@ -44,25 +71,52 @@ CREATE ROLE
 ```
 mkdir -p /opt/postgres
 ./configure --prefix=/opt/postgres && make -j 8 && make install
+```
+添加用户
+```
 useradd -m postgres; passwd postgres;
 mkdir /opt/postgres/data
 chown -R postgres /opt/postgres
+su postgres
+
+
 # vim ~/.bashrc
 PATH=$PATH:/opt/postgres/bin
 export PATH
 LD_LIBRARY_PATH=/opt/postgres/lib
 export LD_LIBRARY_PATH
 export PGDATA=/opt/postgres/data
+
 source ~/.bashrc
 postgres --version
 ```
+### 启动数据库
+```
+initdb -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+psql -p 5432 
+```
+### 修改配置
+```
+vi postgresql.conf
+listen_addresses = '*'
+#port = 5432
+#unix_socket_directories = '/tmp'
+#改完postgresql.conf后需要重启数据库
+pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
+vi pg_hba.conf
+#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
+host        all        all        0.0.0.0/0        md5
+# 若端口号有冲突使用netstat -anp | grep 5432
+# pg_ctl reload重新读取pg_hba.conf文件
+```
 
-### 创建数据库用户
+### 创建、迁移数据库用户
 ```sql
-postgres=# create user pg with password 'password';
+postgres=# create user your_name with password 'password';
 CREATE ROLE
--- alter pg name rename to new pgnew;
--- alter pg name with password 'newpassword'; 
+-- ALTER your_name name with password 'newpassword'; 
+-- ALTER TABLE your_table_name OWNER TO new_username;
 ```
 ## HighgoDB
 
@@ -141,23 +195,47 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>下载Postgres<a href="http://www.postgresql.org/ftp/source/" rel="nofollow">源码</a></p>
 <pre class="notranslate"><code class="notranslate">mkdir -p /opt/postgres
 ./configure --prefix=/opt/postgres &amp;&amp; make -j 8 &amp;&amp; make install
-useradd -m postgres; passwd postgres;
+</code></pre>
+<p>添加用户</p>
+<pre class="notranslate"><code class="notranslate">useradd -m postgres; passwd postgres;
 mkdir /opt/postgres/data
 chown -R postgres /opt/postgres
+su postgres
+
+
 # vim ~/.bashrc
 PATH=$PATH:/opt/postgres/bin
 export PATH
 LD_LIBRARY_PATH=/opt/postgres/lib
 export LD_LIBRARY_PATH
 export PGDATA=/opt/postgres/data
+
 source ~/.bashrc
 postgres --version
 </code></pre>
-<h3>创建数据库用户</h3>
-<div class="highlight highlight-source-sql"><pre class="notranslate">postgres<span class="pl-k">=</span><span class="pl-c"><span class="pl-c">#</span> create user pg with password 'password';</span>
+<h3>启动数据库</h3>
+<pre class="notranslate"><code class="notranslate">initdb -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+psql -p 5432 
+</code></pre>
+<h3>修改配置</h3>
+<pre class="notranslate"><code class="notranslate">vi postgresql.conf
+listen_addresses = '*'
+#port = 5432
+#unix_socket_directories = '/tmp'
+#改完postgresql.conf后需要重启数据库
+pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
+vi pg_hba.conf
+#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
+host        all        all        0.0.0.0/0        md5
+# 若端口号有冲突使用netstat -anp | grep 5432
+# pg_ctl reload重新读取pg_hba.conf文件
+</code></pre>
+<h3>创建、迁移数据库用户</h3>
+<div class="highlight highlight-source-sql"><pre class="notranslate">postgres<span class="pl-k">=</span><span class="pl-c"><span class="pl-c">#</span> create user your_name with password 'password';</span>
 CREATE ROLE
-<span class="pl-c"><span class="pl-c">--</span> alter pg name rename to new pgnew;</span>
-<span class="pl-c"><span class="pl-c">--</span> alter pg name with password 'newpassword'; </span></pre></div>
+<span class="pl-c"><span class="pl-c">--</span> ALTER your_name name with password 'newpassword'; </span>
+<span class="pl-c"><span class="pl-c">--</span> ALTER TABLE your_table_name OWNER TO new_username;</span></pre></div>
 <h2>HighgoDB</h2>
 <h2>IvorySQL</h2></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
