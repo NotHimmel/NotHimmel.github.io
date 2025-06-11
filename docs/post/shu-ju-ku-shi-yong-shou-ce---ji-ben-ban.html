@@ -64,7 +64,18 @@ CREATE ROLE
 ```
 ## HighgoDB
 
-## IvorySQL。">
+### 启动数据库
+```shell
+initdb -D $PGDATA
+hg_sslkeygen.sh  -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/hg_0611 restart
+psql -U sysdba -d highgo
+``` 
+
+## IvorySQL
+
+<!-- ##{'script':'<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>'}## -->
+。">
 <meta property="og:title" content="数据库使用手册-基本版">
 <meta property="og:description" content="## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
@@ -120,7 +131,18 @@ CREATE ROLE
 ```
 ## HighgoDB
 
-## IvorySQL。">
+### 启动数据库
+```shell
+initdb -D $PGDATA
+hg_sslkeygen.sh  -D $PGDATA
+pg_ctl -D $PGDATA -l ~/logs/hg_0611 restart
+psql -U sysdba -d highgo
+``` 
+
+## IvorySQL
+
+<!-- ##{'script':'<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>'}## -->
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html">
 <meta property="og:image" content="https://nothimmel.github.io/avatar.svg">
@@ -237,7 +259,13 @@ CREATE ROLE
 <span class="pl-c"><span class="pl-c">--</span> ALTER your_name name with password 'newpassword'; </span>
 <span class="pl-c"><span class="pl-c">--</span> ALTER TABLE your_table_name OWNER TO new_username;</span></pre></div>
 <h2>HighgoDB</h2>
-<h2>IvorySQL</h2></div>
+<h3>启动数据库</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate">initdb -D <span class="pl-smi">$PGDATA</span>
+hg_sslkeygen.sh  -D <span class="pl-smi">$PGDATA</span>
+pg_ctl -D <span class="pl-smi">$PGDATA</span> -l <span class="pl-k">~</span>/logs/hg_0611 restart
+psql -U sysdba -d highgo</pre></div>
+<h2>IvorySQL</h2>
+</div>
 <div style="font-size:small;margin-top:8px;float:right;">El Psy Kongroo</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
