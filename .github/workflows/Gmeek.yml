@@ -36,10 +36,14 @@ jobs:
       - name: Clone source code
         run: |
           GMEEK_VERSION=$(jq -r ".GMEEK_VERSION" config.json)
+          
           git clone https://github.com/NotHimmel/Gmeek /opt/Gmeek;
           cd /opt/Gmeek/
-          lastTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          if [ $GMEEK_VERSION == 'last' ]; then git checkout $lastTag; else git checkout $GMEEK_VERSION; fi;
+          
+          # 只有当 GMEEK_VERSION 不是 'last' 时，才执行 checkout
+          if [ $GMEEK_VERSION != 'last' ]; then
+            git checkout $GMEEK_VERSION;
+          fi;
 
       - name: Install dependencies
         run: |
