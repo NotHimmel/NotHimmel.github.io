@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 11 Jun 2025 02:03:05 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>数据库使用手册-基本版</title><link>https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 11 Jun 2025 02:25:04 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>数据库使用手册-基本版</title><link>https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
 mkdir -p /opt/postgres
@@ -62,6 +62,8 @@ psql -U sysdba -d highgo
 ``` 
 
 ## IvorySQL
+[Github Release](https://github.com/IvorySQL/IvorySQL/releases)下载安装包
+
 
 &lt;!-- ##{'script':'&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'&gt;&lt;/script&gt;'}## --&gt;
 。</description><guid isPermaLink="true">https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</guid><pubDate>Wed, 11 Jun 2025 00:37:41 +0000</pubDate></item></channel></rss>
