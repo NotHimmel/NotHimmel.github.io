@@ -16,7 +16,7 @@ CHECK (VALUE >= 0.0 AND VALUE <= 100.0);
 insert into Enrollments(student, course, mark)
 vales(3312345, 5542, 75);
 INSERT 0 1
--- 1代表修改了一个touple 0代表没有为该touple生成内部的对象标识符
+-- 1代表修改了一个touple ，0代表没有为该touple生成内部的对象标识符
 
 update Enrollments set mark = 77
 where student = 3312345 AND course = 5542;
