@@ -93,7 +93,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">check</span> (value between <span class="pl-c1">0</span>.<span class="pl-c1">0</span> <span class="pl-k">and</span> <span class="pl-c1">100</span>.<span class="pl-c1">0</span>);
 
 <span class="pl-k">CREATE</span> <span class="pl-k">DOMAIN</span> <span class="pl-en">WAMvalue</span> <span class="pl-k">AS</span> <span class="pl-k">double precision</span>
-<span class="pl-k">CHECK</span> (VALUE <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>.<span class="pl-c1">0</span> <span class="pl-k">AND</span> VALUE <span class="pl-k">&lt;=</span> <span class="pl-c1">100</span>.<span class="pl-c1">0</span>);</pre></div></div>
+<span class="pl-k">CHECK</span> (VALUE <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>.<span class="pl-c1">0</span> <span class="pl-k">AND</span> VALUE <span class="pl-k">&lt;=</span> <span class="pl-c1">100</span>.<span class="pl-c1">0</span>);</pre></div>
+<h2>Data Modification</h2>
+<div class="highlight highlight-source-sql"><pre class="notranslate"><span class="pl-k">insert into</span> Enrollments(student, course, mark)
+vales(<span class="pl-c1">3312345</span>, <span class="pl-c1">5542</span>, <span class="pl-c1">75</span>);
+INSERT <span class="pl-c1">0</span> <span class="pl-c1">1</span>
+<span class="pl-c"><span class="pl-c">--</span> 1代表修改了一个touple 0代表没有为该touple生成内部的对象标识符</span>
+
+<span class="pl-k">update</span> Enrollments <span class="pl-k">set</span> mark <span class="pl-k">=</span> <span class="pl-c1">77</span>
+<span class="pl-k">where</span> student <span class="pl-k">=</span> <span class="pl-c1">3312345</span> <span class="pl-k">AND</span> course <span class="pl-k">=</span> <span class="pl-c1">5542</span>;
+
+<span class="pl-k">delete</span> Enrollments
+<span class="pl-k">where</span> student <span class="pl-k">=</span> <span class="pl-c1">3312345</span>;</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;">El Psy Kongroo</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
