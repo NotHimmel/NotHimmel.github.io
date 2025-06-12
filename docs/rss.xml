@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Thu, 12 Jun 2025 07:33:38 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Thu, 12 Jun 2025 09:43:28 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
 将DB学习过程中遇到的不明白的SQL语句记录在此。</description><guid isPermaLink="true">https://nothimmel.github.io/post/SQL-yu-ju.html</guid><pubDate>Thu, 12 Jun 2025 07:33:10 +0000</pubDate></item><item><title>CMU15-445冒险记</title><link>https://nothimmel.github.io/post/CMU15-445-mao-xian-ji.html</link><description># 课程链接
 [课程主页](https://15445.courses.cs.cmu.edu/fall2024/schedule.html)
 [课程视频](https://www.bilibili.com/video/BV169QhYZEhn)
@@ -12,7 +12,23 @@ Lecture3。</description><guid isPermaLink="true">https://nothimmel.github.io/po
 [课程笔记](https://vwong.dev/notes/COMP9315/)
 [离线课程材料](https://github.com/weil0819/COMP9315)
 
+# 课程进度
+p2 10:39
 
+# 课程笔记
+![Image](https://github.com/user-attachments/assets/0aac4ede-62de-4b67-ae17-6672f4089ff2)
+添加表这个DDL操作，只会在数据库中的目录(Catalog)中新增一个条目，并返回一个状态如：
+```psql
+jas=# create table RR ( x integer, y integer);
+CREATE TABLE
+
+jas=# \d rr
+    Table 'Public.rr'
+Column | Type   | Modifiers
+-------+---------+-----------
+x      | integer |
+y      | integer |      
+``` 
 
 
 
