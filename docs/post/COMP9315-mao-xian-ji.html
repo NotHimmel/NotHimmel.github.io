@@ -17,7 +17,7 @@
 [离线课程材料](https://github.com/weil0819/COMP9315)
 
 # 课程进度
-p2 10:39
+p3 0：0
 
 # 课程笔记
 ![Image](https://github.com/user-attachments/assets/0aac4ede-62de-4b67-ae17-6672f4089ff2)
@@ -34,12 +34,7 @@ x      | integer |
 y      | integer |      
 ``` 
 
-
-
-
-
-
-。">
+关系代数语言可以用数学的角度来理解，也可以作为操作数据的汇编语言来理解。">
 <meta property="og:title" content="COMP9315冒险记">
 <meta property="og:description" content="# 课程链接
 [24课程主页](https://cgi.cse.unsw.edu.au/~cs9315/24T1/index.php)
@@ -48,7 +43,7 @@ y      | integer |
 [离线课程材料](https://github.com/weil0819/COMP9315)
 
 # 课程进度
-p2 10:39
+p3 0：0
 
 # 课程笔记
 ![Image](https://github.com/user-attachments/assets/0aac4ede-62de-4b67-ae17-6672f4089ff2)
@@ -65,12 +60,7 @@ x      | integer |
 y      | integer |      
 ``` 
 
-
-
-
-
-
-。">
+关系代数语言可以用数学的角度来理解，也可以作为操作数据的汇编语言来理解。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nothimmel.github.io/post/COMP9315-mao-xian-ji.html">
 <meta property="og:image" content="https://nothimmel.github.io/avatar.svg">
@@ -137,7 +127,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <a href="https://vwong.dev/notes/COMP9315/" rel="nofollow">课程笔记</a><br>
 <a href="https://github.com/weil0819/COMP9315">离线课程材料</a></p>
 <h1>课程进度</h1>
-<p>p2 10:39</p>
+<p>p3 0：0</p>
 <h1>课程笔记</h1>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/0aac4ede-62de-4b67-ae17-6672f4089ff2"><img src="https://github.com/user-attachments/assets/0aac4ede-62de-4b67-ae17-6672f4089ff2" alt="Image" style="max-width: 100%;"></a><br>
 添加表这个DDL操作，只会在数据库中的目录(Catalog)中新增一个条目，并返回一个状态如：</p>
@@ -150,7 +140,26 @@ Column | Type   | Modifiers
 -------+---------+-----------
 x      | integer |
 y      | integer |      
-</code></pre></div>
+</code></pre>
+<p>关系代数语言可以用数学的角度来理解，也可以作为操作数据的汇编语言来理解。<br>
+每一条SQL查询语句，都可以翻译为关系代数语言，查询优化器可能有不同的翻译优化，如：<br>
+Sel[course=COMP9315 &amp; mark &gt;=50 &amp; term=18s2](Course join Enrollment join Student)</p>
+<ol>
+<li>
+<p>先join再select<br>
+Tmp1 = Course join Enrollment<br>
+Tmp2 = Tmp1 join Student<br>
+Res = Sel[course=COMP9315 &amp; mark&gt;=50 &amp; term=18s2] Tmp2</p>
+</li>
+<li>
+<p>先select再join<br>
+Tmp1 = Sel[course=COM9315 &amp; term=18s2] Course<br>
+Tmp2 = Sel[mark &gt;= 50] Enrollment<br>
+Tmp3 = Tmp1 join Tmp2<br>
+Tmp4 = Tmp3 join Student --获取学生的姓名</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b3c0d3da-635d-4533-91a6-7cf0f20ac5e7"><img src="https://github.com/user-attachments/assets/b3c0d3da-635d-4533-91a6-7cf0f20ac5e7" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">El Psy Kongroo</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
