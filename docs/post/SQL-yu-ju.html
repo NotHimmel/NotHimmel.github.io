@@ -104,7 +104,14 @@ INSERT <span class="pl-c1">0</span> <span class="pl-c1">1</span>
 <span class="pl-k">where</span> student <span class="pl-k">=</span> <span class="pl-c1">3312345</span> <span class="pl-k">AND</span> course <span class="pl-k">=</span> <span class="pl-c1">5542</span>;
 
 <span class="pl-k">delete</span> Enrollments
-<span class="pl-k">where</span> student <span class="pl-k">=</span> <span class="pl-c1">3312345</span>;</pre></div></div>
+<span class="pl-k">where</span> student <span class="pl-k">=</span> <span class="pl-c1">3312345</span>;</pre></div>
+<h2>Meta Search</h2>
+<pre class="notranslate"><code class="notranslate">explain select * from Enrollments;
+     QUERY PLAN
+-------------------
+Seq Scan on Enrollments (cost= rows= width=)
+-- 解释查询过程
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;">El Psy Kongroo</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

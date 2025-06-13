@@ -24,3 +24,12 @@ where student = 3312345 AND course = 5542;
 delete Enrollments
 where student = 3312345;
 ``` 
+
+## Meta Search
+```
+explain select * from Enrollments;
+     QUERY PLAN
+-------------------
+Seq Scan on Enrollments (cost= rows= width=)
+-- 解释查询过程
+``` 
