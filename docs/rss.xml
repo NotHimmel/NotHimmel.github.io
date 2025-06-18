@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 18 Jun 2025 01:04:24 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 18 Jun 2025 02:54:35 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
 将DB学习过程中遇到的不明白的SQL语句记录在此。</description><guid isPermaLink="true">https://nothimmel.github.io/post/SQL-yu-ju.html</guid><pubDate>Thu, 12 Jun 2025 07:33:10 +0000</pubDate></item><item><title>CMU15-445冒险记</title><link>https://nothimmel.github.io/post/CMU15-445-mao-xian-ji.html</link><description># 课程链接
 [课程主页](https://15445.courses.cs.cmu.edu/fall2024/schedule.html)
 [课程视频](https://www.bilibili.com/video/BV169QhYZEhn)
@@ -67,7 +67,22 @@ y      | integer |
 - [ ] 创建 GB18030 编码的数据库，可考虑实现多版本2005/2022
 - [ ] GB18030作为服务器编码时，要能够在pg_conversion中和客户端其他的字符集编码进行转换
 - [ ] 适配识别GB18030的字符串处理函数
-- [ ] 适配GB18030字符集的排序、索引。</description><guid isPermaLink="true">https://nothimmel.github.io/post/PostgreSQL%20-fu-wu-duan-bian-ma-zhi-chi-GB18030.html</guid><pubDate>Wed, 11 Jun 2025 08:45:32 +0000</pubDate></item><item><title>数据库使用手册-基本版</title><link>https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
+- [ ] 适配GB18030字符集的排序、索引
+
+# 支持GB18030服务器编码的数据库是什么样的？
+
+## 首先服务器要支持GB18030
+sudo locale-gen zh_CN.GBK
+sudo locale-gen zh_CN.GB18030
+
+sudo dpkg-reconfigure locales
+
+## 1. pro
+```
+SELECT DISTINCT pg_encoding_to_char(conforencoding) AS supported_encoding
+FROM pg_conversion
+ORDER BY supported_encoding;
+--查询了系统目录 pg_conversion，这个表存储了所有可用的编码转换规则。</description><guid isPermaLink="true">https://nothimmel.github.io/post/PostgreSQL%20-fu-wu-duan-bian-ma-zhi-chi-GB18030.html</guid><pubDate>Wed, 11 Jun 2025 08:45:32 +0000</pubDate></item><item><title>数据库使用手册-基本版</title><link>https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
 tar xfj *.bz2 # tar -zxvf *.gz

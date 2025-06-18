@@ -35,3 +35,19 @@
 - [ ] GB18030作为服务器编码时，要能够在pg_conversion中和客户端其他的字符集编码进行转换
 - [ ] 适配识别GB18030的字符串处理函数
 - [ ] 适配GB18030字符集的排序、索引
+
+# 支持GB18030服务器编码的数据库是什么样的？
+
+## 首先服务器要支持GB18030
+sudo locale-gen zh_CN.GBK
+sudo locale-gen zh_CN.GB18030
+
+sudo dpkg-reconfigure locales
+
+## 1. pro
+```
+SELECT DISTINCT pg_encoding_to_char(conforencoding) AS supported_encoding
+FROM pg_conversion
+ORDER BY supported_encoding;
+--查询了系统目录 pg_conversion，这个表存储了所有可用的编码转换规则。
+```
