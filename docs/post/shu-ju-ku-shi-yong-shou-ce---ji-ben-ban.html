@@ -13,42 +13,44 @@
 <meta name="description" content="## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
-mkdir -p /opt/postgres
-./configure --prefix=/opt/postgres && make -j 8 && make install
+tar xfj *.bz2 # tar -zxvf *.gz
+# useradd -m postgres; passwd postgres;
+sudo mkdir -p /opt/pgsql
+sudo chown -R $USER /opt/pgsql
+./configure --prefix=/opt/pgsql && make -j 8 && make install
 ```
-添加用户
+
+添加环境变量文件/opt/pgsql/env
 ```
-useradd -m postgres; passwd postgres;
-mkdir /opt/postgres/data
-chown -R postgres /opt/postgres
-su postgres
+export PGDATA=/opt/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/opt/pgsql/lib
 
+export PATH=/opt/pgsql/bin:$PATH
 
-# vim ~/.bashrc
-PATH=$PATH:/opt/postgres/bin
-export PATH
-LD_LIBRARY_PATH=/opt/postgres/lib
-export LD_LIBRARY_PATH
-export PGDATA=/opt/postgres/data
-
-source ~/.bashrc
-postgres --version
+alias p0='pg_ctl stop'
+alias p1='pg_ctl -l $PGDATA/log start'
+alias pl='psql -l'
+alias showpg='tail -20 $PGDATA/log'
 ```
+
+修改配置文件
+```
+edit $PGDATA/postgresql.conf
+... set listen_addresses = '' ...
+... set max_connections = 10 ...
+... set max_wal_senders = 4 ...
+... set unix_socket_directories = 'name of PGDATA directory' ...
+```
+
 ### 启动数据库
 ```
-initdb -D $PGDATA
-pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+initdb -D $PGDATA # initdb
+pg_ctl -D $PGDATA -l $PGDATA/log start # p1
 psql -p 5432 
 ```
-### 修改配置
+### 修改pg_hba.conf配置
 ```
-vi postgresql.conf
-listen_addresses = '*'
-#port = 5432
-#unix_socket_directories = '/tmp'
-#改完postgresql.conf后需要重启数据库
-pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
-vi pg_hba.conf
 #最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
 host        all        all        0.0.0.0/0        md5
 # 若端口号有冲突使用netstat -anp | grep 5432
@@ -78,42 +80,44 @@ psql -U sysdba -d highgo
 <meta property="og:description" content="## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
-mkdir -p /opt/postgres
-./configure --prefix=/opt/postgres && make -j 8 && make install
+tar xfj *.bz2 # tar -zxvf *.gz
+# useradd -m postgres; passwd postgres;
+sudo mkdir -p /opt/pgsql
+sudo chown -R $USER /opt/pgsql
+./configure --prefix=/opt/pgsql && make -j 8 && make install
 ```
-添加用户
+
+添加环境变量文件/opt/pgsql/env
 ```
-useradd -m postgres; passwd postgres;
-mkdir /opt/postgres/data
-chown -R postgres /opt/postgres
-su postgres
+export PGDATA=/opt/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/opt/pgsql/lib
 
+export PATH=/opt/pgsql/bin:$PATH
 
-# vim ~/.bashrc
-PATH=$PATH:/opt/postgres/bin
-export PATH
-LD_LIBRARY_PATH=/opt/postgres/lib
-export LD_LIBRARY_PATH
-export PGDATA=/opt/postgres/data
-
-source ~/.bashrc
-postgres --version
+alias p0='pg_ctl stop'
+alias p1='pg_ctl -l $PGDATA/log start'
+alias pl='psql -l'
+alias showpg='tail -20 $PGDATA/log'
 ```
+
+修改配置文件
+```
+edit $PGDATA/postgresql.conf
+... set listen_addresses = '' ...
+... set max_connections = 10 ...
+... set max_wal_senders = 4 ...
+... set unix_socket_directories = 'name of PGDATA directory' ...
+```
+
 ### 启动数据库
 ```
-initdb -D $PGDATA
-pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+initdb -D $PGDATA # initdb
+pg_ctl -D $PGDATA -l $PGDATA/log start # p1
 psql -p 5432 
 ```
-### 修改配置
+### 修改pg_hba.conf配置
 ```
-vi postgresql.conf
-listen_addresses = '*'
-#port = 5432
-#unix_socket_directories = '/tmp'
-#改完postgresql.conf后需要重启数据库
-pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
-vi pg_hba.conf
 #最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
 host        all        all        0.0.0.0/0        md5
 # 若端口号有冲突使用netstat -anp | grep 5432
@@ -211,40 +215,38 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><h2>Postgres</h2>
 <p>下载Postgres<a href="http://www.postgresql.org/ftp/source/" rel="nofollow">源码</a></p>
-<pre class="notranslate"><code class="notranslate">mkdir -p /opt/postgres
-./configure --prefix=/opt/postgres &amp;&amp; make -j 8 &amp;&amp; make install
+<pre class="notranslate"><code class="notranslate">tar xfj *.bz2 # tar -zxvf *.gz
+# useradd -m postgres; passwd postgres;
+sudo mkdir -p /opt/pgsql
+sudo chown -R $USER /opt/pgsql
+./configure --prefix=/opt/pgsql &amp;&amp; make -j 8 &amp;&amp; make install
 </code></pre>
-<p>添加用户</p>
-<pre class="notranslate"><code class="notranslate">useradd -m postgres; passwd postgres;
-mkdir /opt/postgres/data
-chown -R postgres /opt/postgres
-su postgres
+<p>添加环境变量文件/opt/pgsql/env</p>
+<pre class="notranslate"><code class="notranslate">export PGDATA=/opt/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/opt/pgsql/lib
 
+export PATH=/opt/pgsql/bin:$PATH
 
-# vim ~/.bashrc
-PATH=$PATH:/opt/postgres/bin
-export PATH
-LD_LIBRARY_PATH=/opt/postgres/lib
-export LD_LIBRARY_PATH
-export PGDATA=/opt/postgres/data
-
-source ~/.bashrc
-postgres --version
+alias p0="pg_ctl stop"
+alias p1="pg_ctl -l $PGDATA/log start"
+alias pl="psql -l"
+alias showpg="tail -20 $PGDATA/log"
+</code></pre>
+<p>修改配置文件</p>
+<pre class="notranslate"><code class="notranslate">edit $PGDATA/postgresql.conf
+... set listen_addresses = '' ...
+... set max_connections = 10 ...
+... set max_wal_senders = 4 ...
+... set unix_socket_directories = 'name of PGDATA directory' ...
 </code></pre>
 <h3>启动数据库</h3>
-<pre class="notranslate"><code class="notranslate">initdb -D $PGDATA
-pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+<pre class="notranslate"><code class="notranslate">initdb -D $PGDATA # initdb
+pg_ctl -D $PGDATA -l $PGDATA/log start # p1
 psql -p 5432 
 </code></pre>
-<h3>修改配置</h3>
-<pre class="notranslate"><code class="notranslate">vi postgresql.conf
-listen_addresses = '*'
-#port = 5432
-#unix_socket_directories = '/tmp'
-#改完postgresql.conf后需要重启数据库
-pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
-vi pg_hba.conf
-#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
+<h3>修改pg_hba.conf配置</h3>
+<pre class="notranslate"><code class="notranslate">#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
 host        all        all        0.0.0.0/0        md5
 # 若端口号有冲突使用netstat -anp | grep 5432
 # pg_ctl reload重新读取pg_hba.conf文件

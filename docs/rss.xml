@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Mon, 16 Jun 2025 02:18:26 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 18 Jun 2025 01:04:24 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
 将DB学习过程中遇到的不明白的SQL语句记录在此。</description><guid isPermaLink="true">https://nothimmel.github.io/post/SQL-yu-ju.html</guid><pubDate>Thu, 12 Jun 2025 07:33:10 +0000</pubDate></item><item><title>CMU15-445冒险记</title><link>https://nothimmel.github.io/post/CMU15-445-mao-xian-ji.html</link><description># 课程链接
 [课程主页](https://15445.courses.cs.cmu.edu/fall2024/schedule.html)
 [课程视频](https://www.bilibili.com/video/BV169QhYZEhn)
@@ -70,42 +70,44 @@ y      | integer |
 - [ ] 适配GB18030字符集的排序、索引。</description><guid isPermaLink="true">https://nothimmel.github.io/post/PostgreSQL%20-fu-wu-duan-bian-ma-zhi-chi-GB18030.html</guid><pubDate>Wed, 11 Jun 2025 08:45:32 +0000</pubDate></item><item><title>数据库使用手册-基本版</title><link>https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</link><description>## Postgres
 下载Postgres[源码](http://www.postgresql.org/ftp/source/)
 ```
-mkdir -p /opt/postgres
-./configure --prefix=/opt/postgres &amp;&amp; make -j 8 &amp;&amp; make install
+tar xfj *.bz2 # tar -zxvf *.gz
+# useradd -m postgres; passwd postgres;
+sudo mkdir -p /opt/pgsql
+sudo chown -R $USER /opt/pgsql
+./configure --prefix=/opt/pgsql &amp;&amp; make -j 8 &amp;&amp; make install
 ```
-添加用户
+
+添加环境变量文件/opt/pgsql/env
 ```
-useradd -m postgres; passwd postgres;
-mkdir /opt/postgres/data
-chown -R postgres /opt/postgres
-su postgres
+export PGDATA=/opt/pgsql/data
+export PGHOST=$PGDATA
+export LD_LIBRARY_PATH=/opt/pgsql/lib
 
+export PATH=/opt/pgsql/bin:$PATH
 
-# vim ~/.bashrc
-PATH=$PATH:/opt/postgres/bin
-export PATH
-LD_LIBRARY_PATH=/opt/postgres/lib
-export LD_LIBRARY_PATH
-export PGDATA=/opt/postgres/data
-
-source ~/.bashrc
-postgres --version
+alias p0='pg_ctl stop'
+alias p1='pg_ctl -l $PGDATA/log start'
+alias pl='psql -l'
+alias showpg='tail -20 $PGDATA/log'
 ```
+
+修改配置文件
+```
+edit $PGDATA/postgresql.conf
+... set listen_addresses = '' ...
+... set max_connections = 10 ...
+... set max_wal_senders = 4 ...
+... set unix_socket_directories = 'name of PGDATA directory' ...
+```
+
 ### 启动数据库
 ```
-initdb -D $PGDATA
-pg_ctl -D $PGDATA -l ~/logs/pg_0611.log start
+initdb -D $PGDATA # initdb
+pg_ctl -D $PGDATA -l $PGDATA/log start # p1
 psql -p 5432 
 ```
-### 修改配置
+### 修改pg_hba.conf配置
 ```
-vi postgresql.conf
-listen_addresses = '*'
-#port = 5432
-#unix_socket_directories = '/tmp'
-#改完postgresql.conf后需要重启数据库
-pg_ctl -D $PGDATA -l ~/logs/pg_0611 restart
-vi pg_hba.conf
 #最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
 host        all        all        0.0.0.0/0        md5
 # 若端口号有冲突使用netstat -anp | grep 5432
