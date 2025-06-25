@@ -17,16 +17,19 @@ tar xfj *.bz2 # tar -zxvf *.gz
 # useradd -m postgres; passwd postgres;
 sudo mkdir -p /opt/pgsql
 sudo chown -R $USER /opt/pgsql
+
+# yum install  readline-devel
 ./configure --prefix=/opt/pgsql && make -j 8 && make install
 ```
 
 添加环境变量文件/opt/pgsql/env
 ```
-export PGDATA=/opt/pgsql/data
+export PGHOME=/opt/db/pgsql
+export PGDATA=$PGHOME/data
 export PGHOST=$PGDATA
-export LD_LIBRARY_PATH=/opt/pgsql/lib
+export LD_LIBRARY_PATH=$PGHOME/lib
 
-export PATH=/opt/pgsql/bin:$PATH
+export PATH=$PGHOME/bin:$PATH
 
 alias p0='pg_ctl stop'
 alias p1='pg_ctl -l $PGDATA/log start'
@@ -84,16 +87,19 @@ tar xfj *.bz2 # tar -zxvf *.gz
 # useradd -m postgres; passwd postgres;
 sudo mkdir -p /opt/pgsql
 sudo chown -R $USER /opt/pgsql
+
+# yum install  readline-devel
 ./configure --prefix=/opt/pgsql && make -j 8 && make install
 ```
 
 添加环境变量文件/opt/pgsql/env
 ```
-export PGDATA=/opt/pgsql/data
+export PGHOME=/opt/db/pgsql
+export PGDATA=$PGHOME/data
 export PGHOST=$PGDATA
-export LD_LIBRARY_PATH=/opt/pgsql/lib
+export LD_LIBRARY_PATH=$PGHOME/lib
 
-export PATH=/opt/pgsql/bin:$PATH
+export PATH=$PGHOME/bin:$PATH
 
 alias p0='pg_ctl stop'
 alias p1='pg_ctl -l $PGDATA/log start'
@@ -219,14 +225,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 # useradd -m postgres; passwd postgres;
 sudo mkdir -p /opt/pgsql
 sudo chown -R $USER /opt/pgsql
+
+# yum install  readline-devel
 ./configure --prefix=/opt/pgsql &amp;&amp; make -j 8 &amp;&amp; make install
 </code></pre>
 <p>添加环境变量文件/opt/pgsql/env</p>
-<pre class="notranslate"><code class="notranslate">export PGDATA=/opt/pgsql/data
+<pre class="notranslate"><code class="notranslate">export PGHOME=/opt/db/pgsql
+export PGDATA=$PGHOME/data
 export PGHOST=$PGDATA
-export LD_LIBRARY_PATH=/opt/pgsql/lib
+export LD_LIBRARY_PATH=$PGHOME/lib
 
-export PATH=/opt/pgsql/bin:$PATH
+export PATH=$PGHOME/bin:$PATH
 
 alias p0="pg_ctl stop"
 alias p1="pg_ctl -l $PGDATA/log start"
