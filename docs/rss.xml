@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 01:55:08 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Redbook 5th 翻译 Part I</title><link>https://nothimmel.github.io/post/Redbook%205th%20-fan-yi-%20Part%20I.html</link><description>[原文链接](http://www.redbook.io)  
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 02:03:11 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Redbook 5th 翻译 Part I</title><link>https://nothimmel.github.io/post/Redbook%205th%20-fan-yi-%20Part%20I.html</link><description>[原文链接](http://www.redbook.io)  
 
 # [Preface](http://www.redbook.io/preface.html)
 自上一版《数据库系统读物》问世以来的十年里，数据管理领域发生了爆炸式增长。</description><guid isPermaLink="true">https://nothimmel.github.io/post/Redbook%205th%20-fan-yi-%20Part%20I.html</guid><pubDate>Thu, 19 Jun 2025 02:46:35 +0000</pubDate></item><item><title>SQL语句</title><link>https://nothimmel.github.io/post/SQL-yu-ju.html</link><description># 简介
@@ -111,46 +111,16 @@ alias p1='pg_ctl -l $PGDATA/log start'
 alias pl='psql -l'
 alias showpg='tail -20 $PGDATA/log'
 ```
-
-修改配置文件
-```
-edit $PGDATA/postgresql.conf
-... set listen_addresses = '' ...
-... set max_connections = 10 ...
-... set max_wal_senders = 4 ...
-... set unix_socket_directories = 'name of PGDATA directory' ...
-```
-
-### 启动数据库
-```
-initdb -D $PGDATA # initdb
-pg_ctl -D $PGDATA -l $PGDATA/log start # p1
-psql -p 5432 
-```
-### 修改pg_hba.conf配置
-```
-#最后一行添加，允许远程密码连接，若不需要密码最后一个参数改为trust
-host        all        all        0.0.0.0/0        md5
-# 若端口号有冲突使用netstat -anp | grep 5432
-# pg_ctl reload重新读取pg_hba.conf文件
-```
-
-### 创建、迁移数据库用户
-```sql
-postgres=# create user your_name with password 'password';
-CREATE ROLE
--- ALTER your_name name with password 'newpassword'; 
--- ALTER TABLE your_table_name OWNER TO new_username;
-```
-## HighgoDB
-
-### 启动数据库
+多数据库切换shell函数
 ```shell
-initdb -D $PGDATA
-hg_sslkeygen.sh  -D $PGDATA
-pg_ctl -D $PGDATA -l ~/logs/hg_0611 restart
-psql -U sysdba -d highgo
-``` 
+function switchdb() {
+    if [ -z '$1' ]; then
+        echo '用法: switchdb [ivorysql|pg|highgo]'
+        echo '例如: switchdb pg'
+        return 1
+    fi
 
-## IvorySQL
-[Github Release](https://github.com/IvorySQL/IvorySQL/releases)下载安装包。</description><guid isPermaLink="true">https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</guid><pubDate>Wed, 11 Jun 2025 00:37:41 +0000</pubDate></item></channel></rss>
+    case '$1' in
+        ivorysql)
+            source /opt/db/ivorysql/env
+            echo '✅ 已切换到 IvorySQL 环境。</description><guid isPermaLink="true">https://nothimmel.github.io/post/shu-ju-ku-shi-yong-shou-ce---ji-ben-ban.html</guid><pubDate>Wed, 11 Jun 2025 00:37:41 +0000</pubDate></item></channel></rss>
