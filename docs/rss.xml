@@ -1,12 +1,130 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 08:32:28 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>配置文件管理手册</title><link>https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 08:52:49 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>配置文件管理手册</title><link>https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</link><description>
 # ssh
 ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
 
 ~/.ssh/config
 
 ## tool
-https://www.hejki.org/ssheditor/。</description><guid isPermaLink="true">https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</guid><pubDate>Wed, 25 Jun 2025 08:32:02 +0000</pubDate></item><item><title>Himmel的软件使用总结 I  终端  Wezterm</title><link>https://nothimmel.github.io/post/Himmel-de-ruan-jian-shi-yong-zong-jie-%20I%20%20-zhong-duan-%20%20Wezterm.html</link><description> # 终端选择哲学
+https://www.hejki.org/ssheditor/
+
+# tmux
+vim ~/.tmux.conf
+tmux source-file ~/.tmux.conf
+```
+# set-option -g prefix C-a
+# unbind-key C-b
+# bind-key C-a send-prefix
+set -g mouse on
+#################### 全局配置 ####################
+
+# 热键替换
+# unbind C-b
+# set -g prefix C-s
+
+# 'C-s R' 重载 tmux 配置
+bind R source-file ~/.tmux.conf \; display-message 'Tmux Config reloaded...'
+
+# 'C-s s' 选择 session 顺序调整
+bind s choose-tree -s -r -O name -K '' 
+
+# 'C-s m' 切换鼠标支持
+bind m run-shell 'if [ '$(tmux show-option -gq mouse)' == 'mouse on' ]; then tmux set -g mouse off; else tmux set -g mouse on; fi'\; display-message 'Mouse Switched...'
+
+# OSC 52
+# https://github.com/tmux/tmux/wiki/Clipboard
+set -s set-clipboard on
+
+#################### 窗口配置 ####################
+
+# 窗口重命名
+set -w -g allow-rename on
+set -w -g automatic-rename on
+
+# 窗口号和窗口分割号从 1 开始
+set -g base-index 1
+set -w -g pane-base-index 1
+
+# 窗口操作默认按键绑定
+set -w -g mode-keys vi
+
+# 终端颜色
+# 此颜色应当与所使用终端配置一致，当前为 Alacritty
+set -g default-terminal 'xterm-256color'
+# -a: append
+set -ga terminal-overrides ',xterm-256color:Tc:clipboard'
+
+# 防止自动关闭 Session
+set -g destroy-unattached off
+
+#################### 状态栏 ####################
+# 状态栏位置
+set -g status-position top
+# 颜色
+set -g status-bg default
+set -g status-fg white
+
+# 刷新时间
+set -g status-interval 1
+
+# 对齐方式
+set -g status-justify centre
+
+# 左下角
+set -g status-left '#[fg=brightcyan]#S'
+set -g status-left-length 20
+
+# 右下角
+set -g status-right '#[fg=brightcyan][%H:%M]'
+
+# 状态栏颜色
+set -g status-style fg=brightgreen
+
+# 消息颜色
+set -g message-style fg=brightgreen
+
+# 默认窗口标题颜色
+set -w -g window-status-format '#[dim]#I:#W'
+
+# 当前窗口标题颜色
+set -w -g window-status-current-format '#[fg=brightcyan,bold]#I:#W'
+
+# pane border
+#set -g pane-border-style fg=brightred
+#set -g pane-active-border-style fg=brightgreen
+
+# pane number display
+set -g display-panes-active-colour brightgreen
+set -g display-panes-colour brightyellow
+
+####################  Plugins ####################
+set -g @plugin 'tmux-plugins/tpm'
+
+set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'MunifTanjim/tmux-mode-indicator'
+set -g @plugin 'MunifTanjim/tmux-suspend'
+set -g @suspend_key 'F12'
+
+# remove colors from status line for suspended state
+set -g @suspend_suspended_options ' \
+    status-left::#[bg=brightblack]--------, \
+    status-right::#[bg=brightblack][-----], \
+    window-status-current-format::#[bg=brightblack]-----
+'
+
+run '~/.tmux/plugins/tpm/tpm'
+
+#################### WorkSpaces ####################
+
+# init workspace
+#new-session -d -s '🍁 local'
+#new-session -d -s '🌋 test'
+#new-session -d -s '🌀 prod'
+
+# custom hook(mmh auto change context)
+#set-hook -t '🌋 test' client-session-changed 'run-shell 'mcx yt-test &gt; /dev/null''
+#set-hook -t '🌀 prod' client-session-changed 'run-shell 'mcx yt-prod &gt; /dev/null''
+``` 。</description><guid isPermaLink="true">https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</guid><pubDate>Wed, 25 Jun 2025 08:32:02 +0000</pubDate></item><item><title>Himmel的软件使用总结 I  终端  Wezterm</title><link>https://nothimmel.github.io/post/Himmel-de-ruan-jian-shi-yong-zong-jie-%20I%20%20-zhong-duan-%20%20Wezterm.html</link><description> # 终端选择哲学
 本文在挑选主力终端软件时，主要基于以下要求：
 1. 开源
 终端软件会接触到各种密码，如果不是真开源是不敢用的。</description><guid isPermaLink="true">https://nothimmel.github.io/post/Himmel-de-ruan-jian-shi-yong-zong-jie-%20I%20%20-zhong-duan-%20%20Wezterm.html</guid><pubDate>Wed, 25 Jun 2025 07:40:22 +0000</pubDate></item><item><title>Redbook 5th 翻译 Part I</title><link>https://nothimmel.github.io/post/Redbook%205th%20-fan-yi-%20Part%20I.html</link><description>[原文链接](http://www.redbook.io)  
