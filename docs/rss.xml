@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 08:52:49 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>配置文件管理手册</title><link>https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 16:32:16 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Rust GUI框架选择</title><link>https://nothimmel.github.io/post/Rust%20GUI-kuang-jia-xuan-ze.html</link><description># 参赛选手
+
+## [egui](https://github.com/emilk/egui) UI 和逻辑耦合性强， 是一个库，逐帧渲染，适合简单ui操作
+
+## [Iced](https://github.com/iced-rs/iced) 数据驱动 Elm 架构 Model - View - Update 跨平台支持
+
+## [Ribir](https://github.com/RibirX/Ribir) 界面和数据分离 跨平台支持 官网文档友好
+
+## [slint](https://github.com/slint-ui/slint) slint定义UI文件 跨平台支持
+
+## [fltk-rs](https://github.com/fltk-rs/fltk-rs) fltk原是C++的库，改为rust，面向对象编程思维友好，有[中文翻译文档](https://fltk.flatig.vip/Home.html)
+有人提到，相比iced编译出来的要小很多，我猜测是适合小程序。</description><guid isPermaLink="true">https://nothimmel.github.io/post/Rust%20GUI-kuang-jia-xuan-ze.html</guid><pubDate>Wed, 25 Jun 2025 09:56:24 +0000</pubDate></item><item><title>配置文件管理手册</title><link>https://nothimmel.github.io/post/pei-zhi-wen-jian-guan-li-shou-ce.html</link><description>
 # ssh
 ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
 
