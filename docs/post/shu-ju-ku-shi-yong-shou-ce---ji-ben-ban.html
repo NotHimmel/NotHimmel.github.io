@@ -210,13 +210,6 @@ alias showpg="tail -20 $PGDATA/log"
             ;;
     <span class="pl-k">esac</span>
 }</pre></div>
-<p>修改配置文件</p>
-<pre class="notranslate"><code class="notranslate">edit $PGDATA/postgresql.conf
-... set listen_addresses = '' ...
-... set max_connections = 10 ...
-... set max_wal_senders = 4 ...
-... set unix_socket_directories = 'name of PGDATA directory' ...
-</code></pre>
 <h3>启动数据库</h3>
 <pre class="notranslate"><code class="notranslate">initdb -D $PGDATA # initdb
 pg_ctl -D $PGDATA -l $PGDATA/log start # p1
@@ -227,6 +220,14 @@ psql -p 5432
 host        all        all        0.0.0.0/0        md5
 # 若端口号有冲突使用netstat -anp | grep 5432
 # pg_ctl reload重新读取pg_hba.conf文件
+</code></pre>
+<p>修改配置文件</p>
+<pre class="notranslate"><code class="notranslate">edit $PGDATA/postgresql.conf
+... set listen_addresses = '' ...
+... set max_connections = 10 ...
+... set max_wal_senders = 4 ...
+... set unix_socket_directories = 'name of PGDATA directory' ...
+p0 p1 # 重启数据库
 </code></pre>
 <h3>创建、迁移数据库用户</h3>
 <div class="highlight highlight-source-sql"><pre class="notranslate">postgres<span class="pl-k">=</span><span class="pl-c"><span class="pl-c">#</span> create user your_name with password 'password';</span>
