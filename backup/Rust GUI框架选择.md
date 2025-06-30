@@ -10,3 +10,9 @@
 
 ## [fltk-rs](https://github.com/fltk-rs/fltk-rs) fltk原是C++的库，改为rust，面向对象编程思维友好，有[中文翻译文档](https://fltk.flatig.vip/Home.html)
 有人提到，相比iced编译出来的要小很多，我猜测是适合小程序。
+
+## Iced
+https://iced.rs
+https://book.iced.rs/first-steps.html
+https://course.rs/first-try/hello-world.html
+https://www.hejki.org/ssheditor/
