@@ -30,7 +30,9 @@ const MAX_POINTS: u32 = 100_000;
 浮点数只是近似，不能用于判等
 
 ### [所有权](https://course.rs/basic/ownership/ownership.html)
-。">
+基本数据类型只是栈上值的拷贝、赋值
+复杂数据类型如string，是所有权的转移，深拷贝需用clone()
+不可变引用的copy并非所有权转移，原引用仍可使用。">
 <meta property="og:title" content="Rust从入门到放弃">
 <meta property="og:description" content="# Reference
 https://course.rs/first-try/hello-world.html
@@ -52,7 +54,9 @@ const MAX_POINTS: u32 = 100_000;
 浮点数只是近似，不能用于判等
 
 ### [所有权](https://course.rs/basic/ownership/ownership.html)
-。">
+基本数据类型只是栈上值的拷贝、赋值
+复杂数据类型如string，是所有权的转移，深拷贝需用clone()
+不可变引用的copy并非所有权转移，原引用仍可使用。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nothimmel.github.io/post/Rust-cong-ru-men-dao-fang-qi.html">
 <meta property="og:image" content="https://nothimmel.github.io/avatar.svg">
@@ -126,7 +130,11 @@ let _x = 5;</p>
 const MAX_POINTS: u32 = 100_000;</p>
 <p>数值类型<br>
 浮点数只是近似，不能用于判等</p>
-<h3><a href="https://course.rs/basic/ownership/ownership.html" rel="nofollow">所有权</a></h3></div>
+<h3><a href="https://course.rs/basic/ownership/ownership.html" rel="nofollow">所有权</a></h3>
+<p>基本数据类型只是栈上值的拷贝、赋值<br>
+复杂数据类型如string，是所有权的转移，深拷贝需用clone()<br>
+不可变引用的copy并非所有权转移，原引用仍可使用。</p>
+<h3><a href="https://course.rs/basic/compound-type/intro.html" rel="nofollow">复合类型</a></h3></div>
 <div style="font-size:small;margin-top:8px;float:right;">El Psy Kongroo</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

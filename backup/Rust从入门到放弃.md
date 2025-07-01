@@ -18,3 +18,8 @@ const MAX_POINTS: u32 = 100_000;
 浮点数只是近似，不能用于判等
 
 ### [所有权](https://course.rs/basic/ownership/ownership.html)
+基本数据类型只是栈上值的拷贝、赋值
+复杂数据类型如string，是所有权的转移，深拷贝需用clone()
+不可变引用的copy并非所有权转移，原引用仍可使用。
+
+### [复合类型](https://course.rs/basic/compound-type/intro.html)
