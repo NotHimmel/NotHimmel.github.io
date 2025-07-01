@@ -14,5 +14,4 @@
 ## Iced
 https://iced.rs
 https://book.iced.rs/first-steps.html
-https://course.rs/first-try/hello-world.html
 https://www.hejki.org/ssheditor/
