@@ -1,5 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Tue, 01 Jul 2025 01:32:06 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Rust GUI框架选择</title><link>https://nothimmel.github.io/post/Rust%20GUI-kuang-jia-xuan-ze.html</link><description># 参赛选手
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Tue, 01 Jul 2025 02:33:49 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Rust从入门到放弃</title><link>https://nothimmel.github.io/post/Rust-cong-ru-men-dao-fang-qi.html</link><description># Reference
+https://course.rs/first-try/hello-world.html
+
+## 基础
+let a = 'hello_world' 绑定变量与所有权转移
+
+默认变量不可变，mut可变
+let mut x = 5;
+x = 6;
+
+带下划线开头的变量，就算不使用也不会warning
+let _x = 5;
+
+常量用const声明，可以声明在全局范围
+const MAX_POINTS: u32 = 100_000;
+
+数值类型
+浮点数只是近似，不能用于判等
+
+### [所有权](https://course.rs/basic/ownership/ownership.html)
+。</description><guid isPermaLink="true">https://nothimmel.github.io/post/Rust-cong-ru-men-dao-fang-qi.html</guid><pubDate>Tue, 01 Jul 2025 02:33:20 +0000</pubDate></item><item><title>Rust GUI框架选择</title><link>https://nothimmel.github.io/post/Rust%20GUI-kuang-jia-xuan-ze.html</link><description># 参赛选手
 
 ## [egui](https://github.com/emilk/egui) UI 和逻辑耦合性强， 是一个库，逐帧渲染，适合简单ui操作
 
