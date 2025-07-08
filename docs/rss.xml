@@ -1,5 +1,206 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Tue, 08 Jul 2025 02:07:39 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Postgres代码同步指南[自用]</title><link>https://nothimmel.github.io/post/Postgres-dai-ma-tong-bu-zhi-nan-%5B-zi-yong-%5D.html</link><description>以IvorySQL IVORYSQL_REL_1_STABLE分支同步pg 14.18代码为例：
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>拉吉塔尼的鹦鹉会笑:)</title><link>https://nothimmel.github.io</link><description>天地与我共生，万物与我为一</description><copyright>拉吉塔尼的鹦鹉会笑:)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://nothimmel.github.io/avatar.svg</url><title>avatar</title><link>https://nothimmel.github.io</link></image><lastBuildDate>Tue, 08 Jul 2025 09:15:01 +0000</lastBuildDate><managingEditor>拉吉塔尼的鹦鹉会笑:)</managingEditor><ttl>60</ttl><webMaster>拉吉塔尼的鹦鹉会笑:)</webMaster><item><title>Postgresql参与手册-从开发到社区参与</title><link>https://nothimmel.github.io/post/Postgresql-can-yu-shou-ce---cong-kai-fa-dao-she-qu-can-yu.html</link><description>## 环境配置 Vscode gdb
+### 编译选项
+CFLAGS='-g -O0' ./configure  --prefix=/home/himmel/Dev/Pg18 --enable-depend --enable-cassert --enable-debug
+make clean; make -j 4; make install;
+
+## 配置文件
+### .vscode/launch.json
+```json
+{
+    'configurations': [
+        {
+            'name': 'Debug PG SRV',
+            'type': 'cppdbg',
+            'request': 'launch',
+            'program': '${workspaceFolder}/pgsql/bin/postgres',
+            'args': [
+                '-D',
+                'pgsql/data'
+            ],
+            'stopAtEntry': false,
+            'cwd': '${workspaceFolder}',
+            'environment': [],
+            'externalConsole': false,
+            'MIMode': 'gdb',
+            'setupCommands': [
+                {
+                    'description': 'Enable pretty-printing for gdb',
+                    'text': '-enable-pretty-printing',
+                    'ignoreFailures': true
+                },
+                {
+                    'description': 'Set Disassembly Flavor to Intel',
+                    'text': '-gdb-set disassembly-flavor intel',
+                    'ignoreFailures': true
+                },
+                {
+                    'text': '-gdb-set follow-fork-mode child',
+                    'ignoreFailures': true
+                },
+                {
+                    'text': '-gdb-set detach-on-fork on',
+                    'ignoreFailures': true
+                }
+            ],
+            'preLaunchTask': 'rebuild_db',
+            'miDebuggerPath': '/usr/bin/gdb'
+        },
+        {
+            'name': 'Attach PG SRV',
+            'type': 'cppdbg',
+            'request': 'attach',
+            'processId': '${command:pickProcess}',
+            'program': '${workspaceFolder}/pgsql/bin/postgres',
+            'MIMode': 'gdb',
+            'setupCommands': [
+                {
+                    'description': 'Enable pretty-printing for gdb',
+                    'text': '-enable-pretty-printing',
+                    'ignoreFailures': true
+                },
+                {
+                    'description': 'Set Disassembly Flavor to Intel',
+                    'text': '-gdb-set disassembly-flavor intel',
+                    'ignoreFailures': true
+                }
+            ]
+        },
+    ],
+    'version': '2.0.0'
+}
+
+``` 
+### .vscode/task.json
+```json
+{
+    'tasks': [
+        {
+            'type': 'shell',
+            'label': 'install_depends',
+            'command': 'sudo apt install -y libsystemd-dev libxml2-dev libssl-dev libicu-dev zlib1g-dev libreadline-dev pkg-config',
+            'options': {
+                'cwd': '${workspaceFolder}'
+            },
+            'detail': 'Task install depends.'
+        },
+        {
+            'type': 'shell',
+            'label': 'build_env',
+            'command': 'mkdir build &amp;&amp; mkdir -p pgsql/data',
+            'options': {
+                'cwd': '${workspaceFolder}'
+            },
+            'detail': 'Task add folders.'
+        },
+        {
+            'type': 'shell',
+            'label': 'build_config',
+            'command': '../configure',
+            'args': [
+                '--prefix=${workspaceFolder}/pgsql',
+                '--with-icu',
+                '--with-openssl',
+                '--with-systemd',
+                '--with-libxml',
+                '--enable-debug'
+            ],
+            'options': {
+                'cwd': '${workspaceFolder}/build'
+            },
+            'detail': 'Task Build MakeFile.'
+        },
+        {
+            'type': 'shell',
+            'label': 'make',
+            'command': 'make',
+            'args': [
+                '-j12'
+            ],
+            'options': {
+                'cwd': '${workspaceFolder}/build'
+            },
+            'detail': 'Task build.'
+        },
+        {
+            'type': 'shell',
+            'label': 'make_install',
+            'command': 'make',
+            'args': [
+                'install'
+            ],
+            'options': {
+                'cwd': '${workspaceFolder}/build'
+            },
+            'detail': 'Task install database.'
+        },
+        {
+            'type': 'shell',
+            'label': 'init_db',
+            'command': 'pgsql/bin/initdb',
+            'args': [
+                '-D',
+                'pgsql/data'
+            ],
+            'options': {
+                'cwd': '${workspaceFolder}'
+            },
+            'detail': 'Task init default database.'
+        },
+        {
+            'type': 'shell',
+            'label': 'clean_db',
+            'command': 'make uninstall &amp;&amp; make clean &amp;&amp; rm -rf ../pgsql &amp;&amp; rm -rf ../build',
+            'options': {
+                'cwd': '${workspaceFolder}/build'
+            },
+            'detail': 'Task clean database.'
+        },
+        {
+            'type': 'shell',
+            'label': 'build_db_conf',
+            'dependsOn': [
+                'build_env',
+                'build_config'
+            ],
+            'dependsOrder': 'sequence',
+            'detail': 'Task add folders.'
+        },
+        {
+            'type': 'shell',
+            'label': 'build_db',
+            'dependsOn': [
+                'make',
+                'make_install',
+                'init_db'
+            ],
+            'dependsOrder': 'sequence',
+            'detail': 'Task add folders.'
+        },
+        {
+            'type': 'shell',
+            'label': 'rebuild_db',
+            'dependsOn': [
+                'make',
+                'make_install'
+            ],
+            'dependsOrder': 'sequence',
+            'detail': 'Task add folders.'
+        },
+    ],
+    'version': '2.0.0'
+}
+``` 
+
+### gdb需要root权限
+sudo visudo
+himmel ALL=(ALL) NOPASSWD:/usr/bin/gdb
+
+
+
+# Ref
+1. https://wiki.postgresql.org/wiki/So,_you_want_to_be_a_developer%3F
+2. https://github.com/liuyuanyuan/PostgresInternals。</description><guid isPermaLink="true">https://nothimmel.github.io/post/Postgresql-can-yu-shou-ce---cong-kai-fa-dao-she-qu-can-yu.html</guid><pubDate>Tue, 08 Jul 2025 09:14:31 +0000</pubDate></item><item><title>Postgres代码同步指南[自用]</title><link>https://nothimmel.github.io/post/Postgres-dai-ma-tong-bu-zhi-nan-%5B-zi-yong-%5D.html</link><description>以IvorySQL IVORYSQL_REL_1_STABLE分支同步pg 14.18代码为例：
 1. 基于IVORYSQL_REL_1_STABLE新建sync_pg_14.18分支
 2. 
 git remote add pg https://git.postgresql.org/git/postgresql.git
