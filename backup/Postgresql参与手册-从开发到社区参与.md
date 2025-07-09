@@ -1,12 +1,13 @@
 ## 源码
 https://github.com/postgres/postgres/tree/REL_18_BETA1
 
-## 环境配置 Vscode gdb
-### 编译选项
+## 环境配置
+### Vscode gdb
+#### 编译选项
 CFLAGS="-g -O0" ./configure  --prefix=/home/himmel/Dev/Pg18 --enable-depend --enable-cassert --enable-debug
 make clean; make -j 4; make install;
 
-## 配置文件
+####  配置文件
 ### .vscode/launch.json
 ```json
 {
@@ -73,7 +74,7 @@ make clean; make -j 4; make install;
 }
 
 ``` 
-### .vscode/task.json
+#### .vscode/task.json
 ```json
 {
     "tasks": [
@@ -194,11 +195,45 @@ make clean; make -j 4; make install;
 }
 ``` 
 
-### gdb需要root权限
+#### gdb需要root权限
 sudo visudo
 himmel ALL=(ALL) NOPASSWD:/usr/bin/gdb
+himmel ALL=(ALL) NOPASSWD: ALL
 
+## clangd代码跳转
+sudo apt install clangd
+Vscode extension install clangd
 
+### .vscode/settings.json
+sudo apt install bear
+make clean
+bear -- make # 生成compile_commands.json
+```
+{
+  "clangd.detectExtensionConflicts": true,
+  "clangd.path": "/usr/bin/clangd",
+  // 查找的头文件路径，每一项前缀 -I
+  "clangd.fallbackFlags": [],
+  "clangd.arguments": [
+      "--background-index",
+      "--compile-commands-dir=${workspaceFolder}",
+      "-j=4",
+      // 全局补全（会自动补充头文件）
+      "--all-scopes-completion",
+      // 更详细的补全内容
+      "--completion-style=detailed",
+      "--header-insertion=iwyu",
+      "--pch-storage=memory",
+      "--cross-file-rename",
+      "--enable-config",
+      // clang-format style to apply by default when no .clang-format file is found
+      "--fallback-style=WebKit",
+      "--pretty",
+      "--clang-tidy",
+      "--query-driver=clang++",
+  ],
+}
+``` 
 
 # Ref
 1. https://wiki.postgresql.org/wiki/So,_you_want_to_be_a_developer%3F
