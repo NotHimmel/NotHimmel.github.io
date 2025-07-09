@@ -21,3 +21,4 @@ upgrade scoop update $args[0]
 
 # Reference
 [Scoop](https://www.wangwangit.com/2025-04-16-Scoop%E4%BD%A0%E7%9A%84Windows%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%A5%9E%E5%99%A8/)
+https://www.xrgzs.top/posts/scoop-dev-setup
